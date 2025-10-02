@@ -1,11 +1,11 @@
 const { ethers } = require('ethers');
 const TelegramBot = require('node-telegram-bot-api');
-const config = require('./config');
+const config = require('./config.js');
 const db = require('./database.js');
 const { ErrorCode } = require("@goplus/sdk-node");
 const checktoken = require('token_security_check');
 
-class PancakeBot {
+class UniswapBot {
 
     constructor() {
         this.config = {
@@ -54,7 +54,7 @@ const coinAbi=[
 const factoryV2 = new ethers.Contract(config.BSC_V2_FACTORY, factoryV2Abi, provider);
 const factoryV3 = new ethers.Contract(config.BSC_V3_FACTORY, factoryV3Abi, provider);
 
-console.log("🚀 PancakeSwap V2/V3 流动性池监控启动...");
+console.log("🚀 UniSwap V2/V3 流动性池监控启动...");
 
 // 监听 V2 PairCreated
 factoryV2.on("PairCreated", async (token0, token1, pairAddress, index, event) => {
@@ -266,4 +266,4 @@ try{
 }
 }
 
-module.exports = new PancakeBot();
+module.exports = new UniswapBot();
