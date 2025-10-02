@@ -8,11 +8,7 @@ const checktoken = require('token_security_check');
 class PancakeBot {
 
     constructor() {
-        this.config = {
-            botchain: process.env.bot_chain,
-            ethkey: process.env.ETH_PRIVATEKEY,
-            bnbkey: process.env.BSC_PRIVATEKEY,
-        };       
+         
     }
     process(){
 
