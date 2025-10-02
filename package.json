@@ -1,0 +1,16 @@
+{
+  "name": "pancake-monitor",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@goplus/sdk-node": "^1.1.1",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.9.0",
+    "mysql": "^2.18.1",
+    "node-telegram-bot-api": "^0.61.0",
+    "token_security_check": "^1.0.0"
+  }
+}
