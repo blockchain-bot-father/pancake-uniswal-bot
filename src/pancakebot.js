@@ -155,34 +155,25 @@ async function coininfo (token,lptoken) {
 }
 
 
-// var mysql      = require('mysql');
-// var connection = mysql.createConnection({
-//   host     : process.env.host,
-//   user     : process.env.user,
-//   password : process.env.password,
-//   database : process.env.database
-// });
-
 const addcoin = async (token0,token1,pair,pool) => {
     
     try{
              
 
-             const token0c = new ethers.Contract(token0, coinAbi, provider);
-             const token1c = new ethers.Contract(token1, coinAbi, provider);
-             const decimals0 = await token0c.decimals();
-             const decimals1 = await token1c.decimals();
-             const name0 = await token0c.symbol()+'';
-             
-            
-            
-            const token0balance = (await token0c.balanceOf(pair))/BigInt(10n**decimals0);
-            const token1balance = (await token1c.balanceOf(pair))/BigInt(10n**decimals1);
-            const price = Number(token1balance)/Number(token0balance);
-           
-            const d1 = `INSERT  INTO bot_coin(token0,token1,pair,token0_balance,token1_balance,price,name,status,pool) VALUES ('${token0}','${token1}','${pair}','${token0balance}','${token1balance}','${price}','${name0}','0','${pool}')`;
-            console.log(d1)
-            db.query(d1)
+        const token0c = new ethers.Contract(token0, coinAbi, provider);
+        const token1c = new ethers.Contract(token1, coinAbi, provider);
+        const decimals0 = await token0c.decimals();
+        const decimals1 = await token1c.decimals();
+        const name0 = await token0c.symbol()+'';
+        
+    
+        const token0balance = (await token0c.balanceOf(pair))/BigInt(10n**decimals0);
+        const token1balance = (await token1c.balanceOf(pair))/BigInt(10n**decimals1);
+        const price = Number(token1balance)/Number(token0balance);
+        
+        const d1 = `INSERT  INTO bot_coin(token0,token1,pair,token0_balance,token1_balance,price,name,status,pool) VALUES ('${token0}','${token1}','${pair}','${token0balance}','${token1balance}','${price}','${name0}','0','${pool}')`;
+        console.log(d1)
+        db.query(d1)
     }catch(e){
         console.log(e)
     }
