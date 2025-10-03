@@ -9,6 +9,6 @@ let connection = mysql.createConnection({
 
 module.exports = {
     query:async (sql)=>{
-        connection.query(sql);
+       await connection.query(sql);
     }
 }
