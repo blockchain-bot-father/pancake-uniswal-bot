@@ -1,7 +1,7 @@
 const { ethers } = require('ethers');
 const TelegramBot = require('node-telegram-bot-api');
-const config = require('./config.js');
-const db = require('./database.js');
+const config = require('../config.js');
+const db = require('../database.js');
 const { ErrorCode } = require("@goplus/sdk-node");
 const checktoken = require('token_security_check');
 
