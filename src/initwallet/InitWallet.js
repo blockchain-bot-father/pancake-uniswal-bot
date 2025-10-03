@@ -69,7 +69,7 @@ create = async () => {
                     const data = `${wallet.address}:${wallet.privateKey}`
                     console.log(data)
                     
-                    const sql = `INSERT  INTO bot(wallet,privatekey) VALUES ('${wallet.address}','${wallet.privateKey}');\n\t`
+                    const sql = `INSERT  INTO wallet(wallet,privatekey) VALUES ('${wallet.address}','${wallet.privateKey}');\n\t`
                     
                     //寫文件或寫數據庫
                     //await db.query(sql);
