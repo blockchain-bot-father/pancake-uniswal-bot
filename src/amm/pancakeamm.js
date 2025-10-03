@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { ethers } = require("ethers");
 const { ERC20_ABI } = require("./ERC20.js");
-const { IRouterV2_ABI,IUniswapV3Pool_ABI,IPancakeV3Factory_ABI,INonfungiblePositionManager_ABI } = require("./pancakeabi.js");
+const { IWBNB_ABI,IRouterV2_ABI,IUniswapV3Pool_ABI,IPancakeV3Factory_ABI,INonfungiblePositionManager_ABI } = require("./pancakeabi.js");
 class PancakeAMM{
 
     constructor(){
@@ -99,6 +99,7 @@ class PancakeAMM{
     }
 
 
+    //v3 token添加流動性
     async addLiquidityV3Token(token0,token1,token0Amount,token1Amount) {
  
         const wallet = await this.getWallet();
@@ -163,7 +164,32 @@ class PancakeAMM{
         console.log("mint tx hash:", receipt.transactionHash);
     }
 
+    //bnb轉WBNB
+    async BNBtoWbnb(amount){
+        const WBNB = process.env.WBNB; // 主网 WBNB
 
-}
+        const wbnb = new ethers.Contract(WBNB, WBNB_ABI, signer);
+        await (await wbnb.deposit({ value: ethers.utils.parseEther(amount) })).wait();
+    }
+
+
+    //WBNB轉bnb
+    async WbnbtoBNB(amount){
+        const WBNB = process.env.WBNB; // 主网 WBNB
+
+        const wbnb = new ethers.Contract(WBNB, WBNB_ABI, signer);
+        await (await wbnb.withdraw(ethers.utils.parseEther(amount))).wait();
+    }
+
+    //v3 BNB添加流動性
+    async addLiquidityV3BNB(token0,token1,token0Amount,token1Amount) {
+        
+        this.BNBtoWbnb(token1Amount);
+        this.addLiquidityV3Token(token0,token1,token0Amount,token1Amount)
+
+    }
+   
+
+    }
 
 module.exports = new PancakeAMM();

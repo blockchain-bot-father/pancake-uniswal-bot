@@ -15,4 +15,15 @@ const INonfungiblePositionManager_ABI = [
   "function mint(tuple(address token0,address token1,uint24 fee,int24 tickLower,int24 tickUpper,uint256 amount0Desired,uint256 amount1Desired,uint256 amount0Min,uint256 amount1Min,address recipient,uint256 deadline)) payable returns (uint256 tokenId,uint128 liquidity,uint256 amount0,uint256 amount1)",
   "function increaseLiquidity(uint256 tokenId, uint128 amount0Desired, uint128 amount1Desired, uint128 amount0Min, uint128 amount1Min, uint256 deadline) external returns (uint128 liquidity, uint256 amount0, uint256 amount1)"
 ];
-module.exports = { IRouterV2_ABI,IPancakeV3Factory_ABI,IUniswapV3Pool_ABI,INonfungiblePositionManager_ABI };
+
+const IWBNB_ABI = [
+  // deposit()
+  "function deposit() payable",
+  // withdraw(uint256 wad)
+  "function withdraw(uint256 wad)",
+  // approve(address spender, uint256 amount) returns (bool)
+  "function approve(address spender, uint256 amount) returns (bool)",
+  // transfer(address to, uint256 value) returns (bool)
+  "function transfer(address to, uint256 value) returns (bool)"
+];
+module.exports = { IWBNB_ABI,IRouterV2_ABI,IPancakeV3Factory_ABI,IUniswapV3Pool_ABI,INonfungiblePositionManager_ABI };
