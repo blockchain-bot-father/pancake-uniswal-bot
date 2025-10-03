@@ -8,13 +8,22 @@ const checktoken = require('token_security_check');
 class UniswapBot {
 
     constructor() {
-           
+        config={
+             BSC_PRIVATEKEY:process.env.ETH_PRIVATEKEY,
+             BSC_RPC:process.env.ETH_RPC,
+             BSC_V2_FACTORY:process.env.ETH_V2_FACTORY,
+             BSC_V3_FACTORY:process.env.ETH_V3_FACTORY,
+             TELEGRAM_TOKEN:process.env.TELEGRAM_TOKEN,
+             TELEGRAM_CHAT_ID:process.env.TELEGRAM_CHAT_ID,
+        }
+        
     }
     process(){
 
     
 // 检查配置
-if (!config.BSC_RPC || !config.BSC_V2_FACTORY || !config.BSC_V3_FACTORY || !config.TELEGRAM_TOKEN || !config.TELEGRAM_CHAT_ID) {
+if (!config.BSC_PRIVATEKEY ||!config.BSC_RPC || !config.BSC_V2_FACTORY || 
+    !config.BSC_V3_FACTORY || !config.TELEGRAM_TOKEN || !config.TELEGRAM_CHAT_ID) {
     console.error("请检查 .env 配置是否完整！");
     process.exit(1);
 }
